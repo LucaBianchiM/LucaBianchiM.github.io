@@ -52,13 +52,19 @@
             background: #0056b3;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const names = ["Bianchi Luca", "Ciurletti Matteo"];
+            document.getElementById("name").textContent = names.join(" & ");
+        });
+    </script>
 </head>
 <body>
     <div class="container">
         <img src="profile.jpg" alt="Immagine Profilo">
-        <h1>Bianchi Luca, Ciurletti Matteo</h1>
+        <h1 id="name">Bianchi Luca, Ciurletti Matteo</h1>
         <p>Web Developer & Designer</p>
-        <p>Ciao! Siamo appassionati di sviluppo web con esperienza in HTML e python.</p>
+        <p>Ciao! Siamo appassionati di sviluppo web con esperienza in HTML, CSS e JavaScript.</p>
         <div class="social">
             <a href="#">LinkedIn</a>
             <a href="#">GitHub</a>
