@@ -1,75 +1,112 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina di Presentazione</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            max-width: 800px;
-            background: white;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            text-align: center;
-        }
-        img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin-bottom: 20px;
-            border: 5px solid #764ba2;
-        }
-        h1 {
-            color: #333;
-            font-size: 2em;
-        }
-        p {
-            color: #555;
-            font-size: 1.1em;
-        }
-        .social a {
-            display: inline-block;
-            margin: 15px;
-            text-decoration: none;
-            color: white;
-            background: #007BFF;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .social a:hover {
-            background: #0056b3;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const names = ["Bianchi Luca", "Ciurletti Matteo"];
-            document.getElementById("name").textContent = names.join(" & ");
-        });
-    </script>
+  <meta charset="UTF-8">
+  <title>Deforestazione in Amazzonia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 40px;
+    }
+    .comparison-container {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+    .comparison-container img {
+      width: 100%;
+      display: block;
+    }
+    .img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .img-overlay img {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      background: red;
+      cursor: ew-resize;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <img src="profile.jpg" alt="Immagine Profilo">
-        <h1 id="name">Bianchi Luca, Ciurletti Matteo</h1>
-        <p>Web Developer & Designer</p>
-        <p>Ciao! Siamo appassionati di sviluppo web con esperienza in HTML, CSS e JavaScript.</p>
-        <div class="social">
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">Twitter</a>
-        </div>
+  <h1>Confronto: Deforestazione in Amazzonia</h1>
+
+  <!-- Sezione 1 -->
+  <div class="comparison-container">
+    <img src="img1_before.jpg" alt="Prima">
+    <div class="img-overlay">
+      <img src="img1_after.jpg" alt="Dopo">
     </div>
+    <div class="slider"></div>
+  </div>
+
+  <!-- Sezione 2 -->
+  <div class="comparison-container">
+    <img src="img2_before.jpg" alt="Prima">
+    <div class="img-overlay">
+      <img src="img2_after.jpg" alt="Dopo">
+    </div>
+    <div class="slider"></div>
+  </div>
+
+  <!-- Sezione 3 -->
+  <div class="comparison-container">
+    <img src="img3_before.jpg" alt="Prima">
+    <div class="img-overlay">
+      <img src="img3_after.jpg" alt="Dopo">
+    </div>
+    <div class="slider"></div>
+  </div>
+
+  <script>
+    document.querySelectorAll('.comparison-container').forEach(container => {
+      const slider = container.querySelector('.slider');
+      const overlay = container.querySelector('.img-overlay');
+
+      const slide = (x) => {
+        const rect = container.getBoundingClientRect();
+        let position = x - rect.left;
+        if (position < 0) position = 0;
+        if (position > rect.width) position = rect.width;
+        overlay.style.width = position + 'px';
+        slider.style.left = position + 'px';
+      };
+
+      const startSlide = (e) => {
+        document.onmousemove = (event) => slide(event.clientX);
+        document.onmouseup = () => document.onmousemove = null;
+      };
+
+      slider.onmousedown = startSlide;
+
+      // Touch support
+      slider.addEventListener('touchstart', () => {
+        document.ontouchmove = (e) => {
+          slide(e.touches[0].clientX);
+        };
+        document.ontouchend = () => document.ontouchmove = null;
+      });
+    });
+  </script>
 </body>
 </html>
