@@ -13,7 +13,5 @@ document.querySelector('.prev').addEventListener('click', () => {
   slides[current].classList.add('active');
 });
 
-// Auto-play facoltativo:
-setInterval(() => {
-  document.querySelector('.next').click();
-}, 5000);
+// Auto-play ogni 5 secondi
+setInterval(() => document.querySelector('.next').click(), 5000);
