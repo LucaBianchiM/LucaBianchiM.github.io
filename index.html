@@ -2,111 +2,54 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deforestazione in Amazzonia</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-      text-align: center;
-    }
-    h1 {
-      margin-bottom: 40px;
-    }
-    .comparison-container {
-      position: relative;
-      width: 90%;
-      max-width: 600px;
-      margin: 40px auto;
-    }
-    .comparison-container img {
-      width: 100%;
-      display: block;
-    }
-    .img-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-    }
-    .img-overlay img {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .slider {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 3px;
-      height: 100%;
-      background: red;
-      cursor: ew-resize;
-      z-index: 2;
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Confronto: Deforestazione in Amazzonia</h1>
-
-  <!-- Sezione 1 -->
-  <div class="comparison-container">
-    <img src="1985_rondonia.png" alt="Prima">
-    <div class="img-overlay">
-      <img src="2020_rondonia.png" alt="Dopo">
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Forest Networks</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="#slider">Galleria</a></li>
+          <li><a href="#contact">Contatti</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="slider"></div>
-  </div>
+  </header>
 
-  <!-- Sezione 2 -->
-  <div class="comparison-container">
-    <img src="img2_before.jpg" alt="Prima">
-    <div class="img-overlay">
-      <img src="img2_after.jpg" alt="Dopo">
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h2>Benvenuto in Forest Networks</h2>
+      <p>La deforestazione in Amazzonia e i suoi effetti sul nostro pianeta</p>
+      <a href="#slider" class="btn">Scopri di più</a>
     </div>
-    <div class="slider"></div>
-  </div>
+  </section>
 
-  <!-- Sezione 3 -->
-  <div class="comparison-container">
-    <img src="img3_before.jpg" alt="Prima">
-    <div class="img-overlay">
-      <img src="img3_after.jpg" alt="Dopo">
+  <section id="slider" class="slider-section">
+    <div class="slider">
+      <div class="slides">
+        <img src="images/slider1.jpg" class="slide active">
+        <img src="images/slider2.jpg" class="slide">
+        <img src="images/slider3.jpg" class="slide">
+      </div>
+      <button class="prev">❮</button>
+      <button class="next">❯</button>
     </div>
-    <div class="slider"></div>
-  </div>
+  </section>
 
-  <script>
-    document.querySelectorAll('.comparison-container').forEach(container => {
-      const slider = container.querySelector('.slider');
-      const overlay = container.querySelector('.img-overlay');
+  <section id="about" class="content-section">
+    <h3>Perché è importante</h3>
+    <p>L'Amazzonia è il polmone verde della Terra... (descrivi qui)</p>
+  </section>
 
-      const slide = (x) => {
-        const rect = container.getBoundingClientRect();
-        let position = x - rect.left;
-        if (position < 0) position = 0;
-        if (position > rect.width) position = rect.width;
-        overlay.style.width = position + 'px';
-        slider.style.left = position + 'px';
-      };
+  <footer id="contact" class="footer">
+    <p>&copy; 2025 Forest Networks</p>
+  </footer>
 
-      const startSlide = (e) => {
-        document.onmousemove = (event) => slide(event.clientX);
-        document.onmouseup = () => document.onmousemove = null;
-      };
-
-      slider.onmousedown = startSlide;
-
-      // Touch support
-      slider.addEventListener('touchstart', () => {
-        document.ontouchmove = (e) => {
-          slide(e.touches[0].clientX);
-        };
-        document.ontouchend = () => document.ontouchmove = null;
-      });
-    });
-  </script>
+  <script src="js/slider.js"></script>
 </body>
 </html>
