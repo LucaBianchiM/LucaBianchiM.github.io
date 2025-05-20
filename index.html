@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deforestazione in Amazzonia</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header class="navbar">
@@ -16,6 +17,7 @@
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="#slider">Galleria</a></li>
           <li><a href="#science">Approfondimento</a></li>
+          <li><a href="#grafico">Dati</a></li>
           <li><a href="#contact">Contatti</a></li>
         </ul>
       </nav>
@@ -34,19 +36,19 @@
     <div class="slider">
       <div class="slides">
         <div class="slide active">
-          <img src="images/1985_rondonia.png" alt="Amazzonia 1985" />
+          <img src="images/1985_rondonia.png" alt="Amazzonia 1985">
           <div class="caption">Copertura forestale nel 1985</div>
         </div>
         <div class="slide">
-          <img src="images/1995_rondonia.jpeg" alt="Amazzonia 1995" />
+          <img src="images/1995_rondonia.jpeg" alt="Amazzonia 1995">
           <div class="caption">Situazione nel 1995</div>
         </div>
         <div class="slide">
-          <img src="images/2010_rondonia.jpeg" alt="Amazzonia 2010" />
+          <img src="images/2010_rondonia.jpeg" alt="Amazzonia 2010">
           <div class="caption">Deforestazione nel 2010</div>
         </div>
         <div class="slide">
-          <img src="images/2020_rondonia.png" alt="Amazzonia 2020" />
+          <img src="images/2020_rondonia.png" alt="Amazzonia 2020">
           <div class="caption">Deforestazione evidente nel 2020</div>
         </div>
       </div>
@@ -57,19 +59,7 @@
 
   <section id="about" class="content-section">
     <h3>Perché è importante</h3>
-    <p>
-      Lo stato brasiliano di <strong>Rondônia</strong> è uno dei territori più colpiti dalla deforestazione dell'Amazzonia. 
-      Dagli anni ’80 in poi, vaste aree di foresta pluviale sono state abbattute per far spazio a pascoli e coltivazioni, compromettendo in modo permanente l’ecosistema locale. 
-      La deforestazione non solo distrugge habitat unici al mondo, ma accelera anche il cambiamento climatico, aumentando la quantità di CO₂ nell’atmosfera.
-    </p>
-    <p>
-      Durante il mandato del presidente <strong>Jair Bolsonaro</strong> (2019–2022), le politiche ambientali del Brasile sono state ampiamente criticate a livello internazionale. 
-      Il governo ha ridotto i controlli ambientali, incentivato lo sfruttamento delle risorse naturali e limitato l’azione degli enti preposti alla protezione della foresta.
-      Di conseguenza, il tasso di deforestazione è aumentato drasticamente, soprattutto in stati come Rondônia, dove l’avanzata dell’agricoltura industriale ha trovato terreno fertile.
-    </p>
-    <p>
-      È fondamentale agire ora: tutelare l’Amazzonia significa proteggere un patrimonio naturale essenziale non solo per il Brasile, ma per l’intero pianeta.
-    </p>
+    <p>L'Amazzonia, in particolare lo stato di Rondônia, ha perso oltre il 70% della sua copertura forestale negli ultimi decenni. Questa deforestazione accelera i cambiamenti climatici, riduce la biodiversità e impatta le comunità locali. Durante il governo Bolsonaro (2019-2022), le politiche ambientali sono state allentate, aumentando notevolmente il ritmo di disboscamento e gli incendi illegali. Le autorità di controllo sono state indebolite, e gli attacchi verso le popolazioni indigene sono cresciuti, rendendo più difficile la protezione delle aree forestali.</p>
   </section>
 
   <section id="science" class="content-section">
@@ -83,14 +73,37 @@
     </p>
   </section>
 
-  <section id="chart" class="content-section">
-    <h3>Andamento della deforestazione in Amazzonia</h3>
-    <canvas id="deforestationChart" width="800" height="400"></canvas>
+  <section id="grafico" class="content-section">
+    <h3>Dati sulla deforestazione (km² all'anno)</h3>
+    <canvas id="chartAmazonia" width="800" height="400"></canvas>
+    <script>
+      const ctx = document.getElementById('chartAmazonia').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ["2000", "2002", "2004", "2006", "2008", "2010", "2012", "2014", "2016", "2018", "2020"],
+          datasets: [{
+            label: 'Deforestazione Amazzonia (km²)',
+            data: [18326, 21451, 27772, 14286, 12911, 7000, 4571, 5022, 7989, 7536, 10851],
+            borderColor: 'red',
+            fill: false,
+            tension: 0.2
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { labels: { color: '#fff' } }
+          },
+          scales: {
+            x: { ticks: { color: '#fff' } },
+            y: { ticks: { color: '#fff' } }
+          }
+        }
+      });
+    </script>
   </section>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/chart.js"></script>
 
-  
   <footer id="contact" class="footer">
     <p>&copy; 2025 Ciurletti Matteo Luca Bianchi</p>
   </footer>
